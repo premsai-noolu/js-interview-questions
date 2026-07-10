@@ -1,0 +1,101 @@
+📘 Concept Notes: async vs defer (JavaScript)
+🔹 1. Problem Statement (Why this topic exists)
+
+When a browser loads a webpage:
+
+It parses HTML
+Builds DOM
+Executes <script> tags
+
+👉 By default:
+
+Browser stops HTML parsing
+Executes JS
+Then continues
+
+❌ This causes slow page loading
+
+🔹 2. Default Script Behavior
+<script src="script.js"></script>
+⚙️ What happens:
+HTML parsing starts
+Script found → parsing pauses
+Script downloaded + executed
+Parsing resumes
+
+👉 This is called blocking behavior
+
+🔹 3. async Attribute
+<script async src="script.js"></script>
+⚙️ Behavior:
+Script downloads in parallel
+Executes immediately after download
+📌 Key Points:
+Does NOT wait for HTML parsing
+Execution is independent
+Order is NOT guaranteed
+🔄 Flow:
+HTML parsing continues
+Script downloads in background
+As soon as ready → executes immediately
+Parsing may get interrupted
+❌ Problems:
+Scripts may execute in random order
+Not suitable when scripts depend on each other
+🔹 4. defer Attribute
+<script defer src="script.js"></script>
+⚙️ Behavior:
+Script downloads in parallel
+Executes after HTML parsing completes
+📌 Key Points:
+Does NOT block parsing
+Maintains execution order
+Runs after DOM is ready
+🔄 Flow:
+HTML parsing continues
+Script downloads in background
+Waits until DOM is fully built
+Executes in order
+🔥 5. async vs defer (Core Difference)
+Feature	async	defer
+Download	Parallel	Parallel
+Execution time	Immediately after download	After HTML parsing
+Order guaranteed	❌ No	✅ Yes
+Blocks parsing	Sometimes	❌ No
+Use case	Independent scripts	Dependent scripts
+
+👉 Both improve performance by avoiding blocking behavior
+
+🎯 6. When to Use What
+✅ Use async when:
+Script is independent
+Example:
+Analytics
+Ads
+Tracking scripts
+✅ Use defer when:
+Script depends on DOM
+Multiple scripts need order
+
+Example:
+
+<script defer src="main.js"></script>
+<script defer src="helper.js"></script>
+
+👉 Runs in same order
+
+🧠 7. Interview Insight (Important)
+
+👉 If interviewer asks:
+
+“Which is better?”
+
+✔️ Answer:
+
+Not about better/worse
+Depends on use case
+
+👉 But generally:
+
+Use defer for most cases
+Use async for independent scripts

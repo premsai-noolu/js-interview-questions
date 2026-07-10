@@ -1,3 +1,7 @@
+/* The bind() method creates a new function, when invoked, has the this sets to a provided value.
+The bind() method allows an object to borrow a method from another object without making a copy of that method. This is known as function borrowing in JavaScript */
+
+
 let name1 = {
   firstName: "premsai",
   lastName: "Noolu",

@@ -1,0 +1,65 @@
+🔹 1. Debouncing
+
+👉 Executes function only after user stops triggering events for a specific time.
+
+✅ Use Cases
+Search bar
+Auto-suggestions
+Form validation
+
+✅ Example
+function debounce(fn, delay) {
+  let timer;
+
+  return function () {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn();
+    }, delay);
+  };
+}
+🧠 Behavior
+
+Typing continuously:
+H E L L O
+
+👉 Only ONE API call after typing stops.
+
+🔹 2. Throttling
+
+👉 Executes function at a fixed interval, no matter how many times event occurs.
+
+✅ Use Cases
+Scroll events
+Resize events
+Game controls
+
+✅ Example
+function throttle(fn, limit) {
+  let flag = true;
+
+  return function () {
+    if (flag) {
+      fn();
+      flag = false;
+
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  };
+}
+🧠 Behavior
+
+Continuous scrolling:
+Scroll Scroll Scroll
+
+👉 Function runs every fixed interval (ex: 1 sec).
+
+🎯 Easy Analogy
+Debounce → Wait until user stops talking 🛑
+Throttle → Allow speaking once every few seconds ⏱️
+
+✅ Final Interview Line
+Debouncing delays execution until events stop, while throttling limits execution frequency.

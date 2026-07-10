@@ -1,0 +1,149 @@
+CORS, Preflight Request, OPTIONS Method | Access Control Allow Origin Explained
+
+🔹 1. What is CORS?
+CORS = Cross-Origin Resource Sharing
+
+It is a browser security mechanism that controls:
+
+Which frontend can access backend APIs from another origin.
+🔹 2. What is an Origin?
+
+An origin consists of:
+
+Part	   Example
+Protocol	https
+Domain  	google.com
+Port	    3000
+
+Example:
+
+https://google.com:3000
+
+If any one changes:
+
+protocol
+domain
+port
+
+👉 It becomes a different origin
+
+🔹 3. Same-Origin Policy
+
+Browsers allow:
+Frontend → Same Origin API
+
+But block:
+Frontend → Different Origin API
+
+because of security reasons.
+
+🔹 4. Why CORS Exists?
+
+Without CORS:
+
+Any website could access your private APIs
+Huge security risk 😬
+CORS protects users from malicious websites.
+
+🔹 5. Simple Request
+
+Example:
+fetch("https://api.example.com/data")
+
+If request is simple:
+
+Browser directly sends request
+Server responds with:
+Access-Control-Allow-Origin: *
+or
+Access-Control-Allow-Origin: http://localhost:3000
+
+👉 Then browser allows access.
+
+🔹 6. Preflight Request
+
+For complex requests:
+
+PUT
+DELETE
+Custom headers
+JSON body
+
+Browser first sends:
+OPTIONS request
+
+This is called:
+👉 Preflight Request
+
+🔄 Flow of Preflight
+Browser sends OPTIONS
+Server checks permissions
+Server responds with allowed methods/headers
+Actual request is sent
+
+🔹 7. Why OPTIONS Method?
+Browser asks server:
+“Can I send this real request safely?”
+
+Example:
+OPTIONS /users
+
+Server response:
+
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Allow-Headers: Content-Type
+
+🔹 8. Important CORS Headers
+Header	                          Purpose
+Access-Control-Allow-Origin	      Allowed frontend
+Access-Control-Allow-Methods	  Allowed HTTP methods
+Access-Control-Allow-Headers	  Allowed headers
+Access-Control-Allow-Credentials  Allow cookies/auth
+
+🔹 9. Common CORS Error
+
+Example:
+Blocked by CORS policy
+Reason:
+Server did not allow:
+
+your origin
+method
+headers
+
+🔹 10. Important Interview Point
+
+👉 CORS is enforced by:
+✅ Browser
+NOT backend
+
+Tools like:
+Postman
+Curl
+usually bypass CORS restrictions.
+
+🔹 11. How Developers Handle CORS
+Backend Fix
+Enable CORS headers.
+
+Example (Express.js):
+app.use(cors());
+
+🔹 12. Easy Analogy
+
+Think of CORS like a security guard 🛡️
+
+Browser asks:
+“Is this website allowed to access your server?”
+
+Server replies:
+
+✅ Allowed
+❌ Blocked
+✅ Final Summary
+CORS protects cross-origin requests
+Browser enforces CORS
+Preflight uses OPTIONS
+Server must explicitly allow access
+Important for frontend/backend communication
