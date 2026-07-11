@@ -2,10 +2,9 @@ CORS, Preflight Request, OPTIONS Method | Access Control Allow Origin Explained
 
 🔹 1. What is CORS?
 CORS = Cross-Origin Resource Sharing
-
 It is a browser security mechanism that controls:
-
 Which frontend can access backend APIs from another origin.
+
 🔹 2. What is an Origin?
 
 An origin consists of:

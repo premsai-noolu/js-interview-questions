@@ -1,5 +1,6 @@
 document.querySelector("#category").addEventListener("click", (e) => {
   console.log(e);
+  e.stopPropagation()
   console.log("category clicked");
   if (e.target.tagName == "LI") {
     window.location.href = "/" + e.target.id;

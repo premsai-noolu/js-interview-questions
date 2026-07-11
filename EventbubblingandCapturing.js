@@ -10,21 +10,24 @@ If capture is true, then the handler is set on the capturing phase.
 event.stopPropagation() it stops the event propagation
 */
 
+//  Note : Always Capturing Phase is executed first
+//                  Then Bubbling Phase
+//          means
+//                  Event propagation always starts from
+//                  Capturing Phase and then move  to Bubbling Phase
+
 document.querySelector("#grandparent").addEventListener(
   "click",
   () => {
     console.log("Grandparent Clicked");
   },
-  true
 );
 
 document.querySelector("#parent").addEventListener(
   "click",
-  (e) => {
+  () => {
     console.log("parent Clicked");
-    e.stopPropagation();
   },
-  true
 );
 
 document.querySelector("#child").addEventListener(
